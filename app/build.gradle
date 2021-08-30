@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.1"
+    defaultConfig {
+        applicationId "com.wpy.wanandroid"
+        minSdkVersion 15
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        config {
+            keyAlias 'android'
+            keyPassword '123456'
+            storePassword '123456'
+            storeFile file('../android.jks')
+        }
+        debug {
+            keyAlias 'android'
+            keyPassword '123456'
+            storePassword '123456'
+            storeFile file('../android.jks')
+        }
+    }
+
+
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+            debuggable true
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.config
+            // 指定混淆文件 前面是默认的 后面是需要自己配置的混淆文件在关联第三方的文件 需要配置的混淆内容
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.config
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.android.support:recyclerview-v7:29.0.1'
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.youth.banner:banner:1.4.10'
+    implementation 'org.litepal.android:kotlin:3.0.0'
+    implementation 'com.wang.avi:library:2.1.3'
+
+    implementation 'com.github.SheHuan:NiceDialog:1.1.9'
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.github.goweii:ActionBarEx:3.2.1'
+    implementation 'me.zhanghai.android.materialprogressbar:library:1.4.2'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-21'
+    implementation 'com.android.support:design:29.0.0'
+    implementation 'com.google.android:flexbox:1.0.0'
+    implementation 'com.just.agentweb:agentweb:4.1.2'
+    implementation 'com.github.goweii:ActionBarEx:3.2.1'
+    implementation 'com.orhanobut:logger:2.2.0'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
+}
